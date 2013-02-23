@@ -137,7 +137,7 @@ Data::Validator::Recursive - recursive data friendly Data::Validator
       baz => {
           isa  => 'HashRef', # default
           rule => [
-              hoge => { isa => 'Str', otional => 1 },
+              hoge => { isa => 'Str', optional => 1 },
               fuga => 'Int',
           ],
       },
@@ -173,7 +173,7 @@ Create a validation rule.
       bar => { isa => 'Int' },
       baz => {
           rule => [
-              hoge => { isa => 'Str', otional => 1 },
+              hoge => { isa => 'Str', optional => 1 },
               fuga => 'Int',
           ],
       },
