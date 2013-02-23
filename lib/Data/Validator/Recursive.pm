@@ -130,10 +130,12 @@ Data::Validator::Recursive - recursive data friendly Data::Validator
 
   use Data::Validator::Recursive;
 
+  # create a new rule
   my $rule = Data::Validator::Recursive->new(
       foo => 'Str',
       bar => { isa => 'Int' },
       baz => {
+          isa  => 'HashRef', # default
           rule => [
               hoge => { isa => 'Str', otional => 1 },
               fuga => 'Int',
@@ -141,11 +143,24 @@ Data::Validator::Recursive - recursive data friendly Data::Validator
       },
   );
 
-  $rule->validate($params) or croak $rule->error->{message};
+  # input data for validation
+  $input = {
+      foo => 'hoge',
+      bar => 1192,
+      baz => {
+          hoge => 'kamakura',
+          fuga => 1185,
+      },
+  };
+
+  # do validation
+  my $params = $rule->validate($iput) or croak $rule->error->{message};
 
 =head1 DESCRIPTION
 
 Data::Validator::Recursive is recursive data friendly Data::Validator.
+
+You are creates the validation rules contain C<< NoThrow >> as default.
 
 =head1 METHODS
 
