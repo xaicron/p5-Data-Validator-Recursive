@@ -64,7 +64,7 @@ sub validate {
     my ($self, $params, $_parent_name) = @_;
     $self->{errors} = undef;
 
-    $self->{validator}->validate($params);
+    my $result = $self->{validator}->validate($params);
     if (my $errors = $self->{validator}->clear_errors) {
         $self->{errors} = [
             map {
@@ -91,7 +91,7 @@ sub validate {
         }
     }
 
-    return $params;
+    return $result;
 }
 
 sub error {

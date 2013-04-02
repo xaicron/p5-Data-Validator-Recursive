@@ -66,4 +66,37 @@ subtest 'valid data' => sub {
     ok !$rule->has_error;
 };
 
+subtest 'with default option' => sub {
+    my $rule = Data::Validator::Recursive->new(
+        foo => 'Str',
+        bar => { isa => 'Int', default => 1 },
+        baz => {
+            isa  => 'HashRef',
+            rule => [
+                hoge => 'Str',
+                fuga => 'Int',
+            ],
+        },
+    );
+
+    my $input = {
+        foo => 'xxx',
+        baz => {
+            hoge => 'xxx',
+            fuga => 123,
+        },
+    };
+
+    my $params = $rule->validate($input);
+
+    is_deeply $params, { %$params, bar => 1 }
+        or note explain $params;
+
+    ok !$rule->has_error;
+    ok !$rule->error;
+    ok !$rule->errors;
+    ok !$rule->clear_errors;
+
+};
+
 done_testing;
