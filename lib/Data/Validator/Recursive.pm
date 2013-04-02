@@ -64,7 +64,7 @@ sub validate {
     my ($self, $params, $_parent_name) = @_;
     $self->{errors} = undef;
 
-    $self->{validator}->validate($params);
+    my $result = $self->{validator}->validate($params);
     if (my $errors = $self->{validator}->clear_errors) {
         $self->{errors} = [
             map {
@@ -82,16 +82,20 @@ sub validate {
 
     for my $rule (@{ $self->{nested_validators} }) {
         my $name = $rule->{name};
-        next unless exists $params->{$name};
+        next unless exists $result->{$name};
 
         my $validator = $rule->{validator};
-        unless ($validator->validate($params->{$name}, $_parent_name ? "$_parent_name.$name" : $name)) {
-            $self->{errors} = $validator->errors;
+        my $result_in_nested = $validator->validate($result->{$name}, $_parent_name ? "$_parent_name.$name" : $name);
+
+        if (my $error = $validator->errors) {
+            $self->{errors} = $error;
             return;
+        } else {
+            $result->{$name} = $result_in_nested;
         }
     }
 
-    return $params;
+    return $result;
 }
 
 sub error {
