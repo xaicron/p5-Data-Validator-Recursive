@@ -267,6 +267,10 @@ Clear last errors after return last errors or undefined value.
 
 Yuji Shimada E<lt>xaicron {@} GMAIL.COME<gt>
 
+=head1 CONTRIBUTORS
+
+punytan
+
 =head1 COPYRIGHT
 
 Copyright 2013 - Yuji Shimada
