@@ -1,0 +1,73 @@
+{
+   "abstract" : "recursive data friendly Data::Validator",
+   "author" : [
+      "Yuji Shimada <xaicron {@} GMAIL.COM>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Minilla/v0.0.51, CPAN::Meta::Converter version 2.130880",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Data-Validator-Recursive",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "xt",
+         "inc",
+         "share",
+         "eg",
+         "examples"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::More" : "0.98",
+            "Test::Requires" : "0.06"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "CPAN::Meta" : "0",
+            "CPAN::Meta::Prereqs" : "0",
+            "Module::Build" : "0.38"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Pod::Wordlist::hanekomu" : "0",
+            "Test::CPAN::Meta" : "0",
+            "Test::MinimumVersion" : "0.10108",
+            "Test::Pod" : "1.41",
+            "Test::Spelling" : "0"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Data::Validator" : "0",
+            "perl" : "5.008001"
+         }
+      }
+   },
+   "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/xaicron/p5-Data-Validator-Recursive/issues"
+      },
+      "homepage" : "https://github.com/xaicron/p5-Data-Validator-Recursive",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/xaicron/p5-Data-Validator-Recursive.git",
+         "web" : "https://github.com/xaicron/p5-Data-Validator-Recursive"
+      }
+   },
+   "version" : "0.01",
+   "x_contributors" : [
+      "punytan <punytan@gmail.com>",
+      "Yuji Shimada <xaicron@gmail.com>"
+   ]
+}
