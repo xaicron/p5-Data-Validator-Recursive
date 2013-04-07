@@ -14,7 +14,7 @@ subtest 'simple' => sub {
     ];
 
     isa_ok $rule->{validator}, 'Data::Validator';
-    is ~~@{ $rule->{nested_validators} }, 0;
+    is scalar @{ $rule->{nested_validators} }, 0;
     is $rule->{error}, undef;
 };
 
