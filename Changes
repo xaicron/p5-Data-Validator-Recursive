@@ -2,6 +2,9 @@ Revision history for Perl extension Data::Validator::Recursive
 
 {{$NEXT}}
 
+0.03 2013-04-19T17:43:46Z
+    - repackaging
+
 0.02 2013-04-07T07:00:20Z
     - first release
 
