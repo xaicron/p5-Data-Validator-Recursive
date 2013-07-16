@@ -11,6 +11,11 @@ my $rule = Data::Validator::Recursive->new(
         rule => [
             hoge => 'Str',
             fuga => 'Int',
+            piyo => {
+                isa      => 'ArrayRef',
+                xor      => [qw/hoge/],
+                optional => 1,
+            },
         ],
     },
 );
@@ -33,7 +38,7 @@ subtest 'valid data' => sub {
     ok !$rule->clear_errors;
 };
 
-subtest 'valid data' => sub {
+subtest 'invalid data' => sub {
     my $input = {
         foo => 'xxx',
         bar => 123,
@@ -60,6 +65,36 @@ subtest 'valid data' => sub {
             name    => 'baz.hoge',
             type    => 'MissingParameter',
             message => q{'baz.hoge' is MissingParameter},
+        },
+    ];
+    is_deeply $rule->errors, $rule->clear_errors;
+    ok !$rule->has_error;
+};
+
+subtest 'conflicts' => sub {
+    my $input = {
+        foo => 'xxx',
+        bar => 123,
+        baz => {
+            hoge => 'yyy',
+            fuga => 456,
+            piyo => [qw/a b c/],
+        },
+    };
+
+    ok! $rule->validate($input);
+    is_deeply $rule->error, {
+        type     => 'ExclusiveParameter',
+        name     => 'baz.hoge',
+        message  => q{'baz.hoge' and 'baz.piyo' is ExclusiveParameter},
+        conflict => 'baz.piyo',
+    };
+    is_deeply $rule->errors, [
+        {
+            type     => 'ExclusiveParameter',
+            name     => 'baz.hoge',
+            message  => q{'baz.hoge' and 'baz.piyo' is ExclusiveParameter},
+            conflict => 'baz.piyo',
         },
     ];
     is_deeply $rule->errors, $rule->clear_errors;
@@ -134,7 +169,6 @@ subtest 'default option with nested' => sub {
     ok !$rule->error;
     ok !$rule->errors;
     ok !$rule->clear_errors;
-
 };
 
 done_testing;
