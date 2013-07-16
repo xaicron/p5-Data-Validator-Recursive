@@ -2,6 +2,9 @@ Revision history for Perl extension Data::Validator::Recursive
 
 {{$NEXT}}
 
+0.04 2013-07-16T18:21:11Z
+    - Fixed wrong error message at Exclusive Parameter
+
 0.03 2013-04-19T17:43:46Z
     - repackaging
 
