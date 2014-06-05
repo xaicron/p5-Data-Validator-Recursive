@@ -171,4 +171,51 @@ subtest 'default option with nested' => sub {
     ok !$rule->clear_errors;
 };
 
+subtest 'with AllowExtra' => sub {
+    my $rule = Data::Validator::Recursive->new(
+        foo => 'Str',
+        bar => { isa => 'Int', default => 1 },
+        baz => {
+            isa  => 'HashRef',
+            with => 'AllowExtra',
+            rule => [
+                hoge => { isa => 'Str', default => 'yyy' },
+                fuga => 'Int',
+            ],
+        },
+    );
+    $rule->with('AllowExtra');
+
+    note ref $rule;
+
+    my $input = {
+        foo => 'xxx',
+        baz => {
+            fuga => 123,
+            extra_param_in_baz => 1,
+        },
+        extra_param => 1,
+    };
+
+    my ($params) = $rule->validate($input);
+
+    is_deeply $params, {
+        foo => 'xxx',
+        bar => 1,
+        baz => {
+            hoge => 'yyy',
+            fuga => 123,
+            extra_param_in_baz => 1,
+        },
+        extra_param => 1,
+    } or note explain $params;
+
+    note ref $rule;
+
+    ok !$rule->has_error;
+    ok !$rule->error;
+    ok !$rule->errors;
+    ok !$rule->clear_errors;
+};
+
 done_testing;
