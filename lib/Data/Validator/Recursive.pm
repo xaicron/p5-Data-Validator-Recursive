@@ -96,10 +96,26 @@ sub validate {
         next unless exists $result->{$name};
 
         my $validator = $rule->{validator};
-        my ($result_in_nested) = $validator->validate($result->{$name}, $_parent_name ? "$_parent_name.$name" : $name);
 
-        if (my $error = $validator->errors) {
-            $self->{errors} = $error;
+        my $result_in_nested;
+        if (ref $result->{$name} eq 'ARRAY') {
+            $result_in_nested = [];
+            my $i = 0;
+            for my $row (@{ $result->{$name} }) {
+                my $indexed_name = sprintf('%s[%d]', $name, $i++);
+                push @$result_in_nested, $validator->validate($row, $_parent_name ? "$_parent_name.$indexed_name" : $indexed_name);
+                if (my $errors = $validator->errors) {
+                    $self->{errors} = $errors;
+                    return;
+                }
+            }
+        }
+        else {
+            ($result_in_nested) = $validator->validate($result->{$name}, $_parent_name ? "$_parent_name.$name" : $name);
+        }
+
+        if (my $errors = $validator->errors) {
+            $self->{errors} = $errors;
             return;
         } else {
             $result->{$name} = $result_in_nested;
