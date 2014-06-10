@@ -151,37 +151,6 @@ subtest 'invalid data at the second of array' => sub {
     ok !$rule->has_error;
 };
 
-#subtest 'invalid data not hashref in the array' => sub {
-    #my $input = {
-        #foo => 'xxx',
-        #bar => 123,
-        #baz => [ 1 ],
-    #};
-    #ok! $rule->validate($input);
-
-    #ok $rule->has_error;
-    #is_deeply $rule->error, {
-        #name    => 'baz[0].fuga',
-        #type    => 'InvalidValue',
-        #message => q{'baz[0].fuga' is InvalidValue},
-    #};
-
-    #is_deeply $rule->errors, [
-        #{
-            #name    => 'baz[0].fuga',
-            #type    => 'InvalidValue',
-            #message => q{'baz[0].fuga' is InvalidValue},
-        #},
-        #{
-            #name    => 'baz[0].hoge',
-            #type    => 'MissingParameter',
-            #message => q{'baz[0].hoge' is MissingParameter},
-        #},
-    #];
-    #is_deeply $rule->errors, $rule->clear_errors;
-    #ok !$rule->has_error;
-#};
-
 subtest 'nested array' => sub {
     my $rule = Data::Validator::Recursive->new(
         foo => 'Str',
