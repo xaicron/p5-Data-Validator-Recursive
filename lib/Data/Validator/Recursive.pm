@@ -101,13 +101,14 @@ sub validate {
         if (ref $result->{$name} eq 'ARRAY') {
             $result_in_nested = [];
             my $i = 0;
-            for my $row (@{ $result->{$name} }) {
+            for my $child_params (@{ $result->{$name} }) {
                 my $indexed_name = sprintf('%s[%d]', $name, $i++);
-                push @$result_in_nested, $validator->validate($row, $_parent_name ? "$_parent_name.$indexed_name" : $indexed_name);
+                my ($child_result) = $validator->validate($child_params, $_parent_name ? "$_parent_name.$indexed_name" : $indexed_name);
                 if (my $errors = $validator->errors) {
                     $self->{errors} = $errors;
                     return;
                 }
+                push @$result_in_nested, $child_result;
             }
         }
         else {
