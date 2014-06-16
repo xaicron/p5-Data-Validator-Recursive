@@ -4,7 +4,7 @@
       "Yuji Shimada <xaicron {@} GMAIL.COM>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.14.1, CPAN::Meta::Converter version 2.140640",
+   "generated_by" : "Minilla/v1.1.0, CPAN::Meta::Converter version 2.140640",
    "license" : [
       "perl_5"
    ],
@@ -71,6 +71,6 @@
    "x_contributors" : [
       "punytan <punytan@gmail.com>",
       "yousuke enomoto <mosaafi@gmail.com>",
-      "Yuji Shimada <xaicron@gmail.com>"
+      "xaicron <xaicron@gmail.com>"
    ]
 }
