@@ -58,6 +58,7 @@ sub _build_rules {
 sub with {
     my ($self, @extentions) = @_;
     $self->{validator}->with(@extentions);
+    return $self;
 }
 
 sub validate {

@@ -183,8 +183,7 @@ subtest 'with AllowExtra' => sub {
                 fuga => 'Int',
             ],
         },
-    );
-    $rule->with('AllowExtra');
+    )->with('AllowExtra');
 
     note ref $rule;
 
