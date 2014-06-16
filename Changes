@@ -2,6 +2,9 @@ Revision history for Perl extension Data::Validator::Recursive
 
 {{$NEXT}}
 
+0.06 2014-06-16T10:03:37Z
+    - Allow chain style for with()
+
 0.05 2014-06-16T01:56:59Z
     - Fixed with('AllowExtra') #2
     - Applying for ArrayRef #3
