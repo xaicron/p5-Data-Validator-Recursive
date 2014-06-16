@@ -55,7 +55,7 @@ Create a validation rule.
         },
     );
 
-_$rule_'s attributes is [Data::Validator](http://search.cpan.org/perldoc?Data::Validator) compatible, And additional attributes as follows:
+_$rule_'s attributes is [Data::Validator](https://metacpan.org/pod/Data::Validator) compatible, And additional attributes as follows:
 
 - `rule => $rule : Array | Hash | Data::Validator::Recursive | Data::Validator`
 
@@ -79,13 +79,13 @@ _$rule_'s attributes is [Data::Validator](http://search.cpan.org/perldoc?Data::V
 
     Applies _$extention_ to this rule.
 
-    See also [Data::Validator](http://search.cpan.org/perldoc?Data::Validator).
+    See also [Data::Validator](https://metacpan.org/pod/Data::Validator).
 
 ## `with(@extentions)` : Data::Validator::Recursive
 
 Applies _@extention_ to this rule.
 
-See also [Data::Validator](http://search.cpan.org/perldoc?Data::Validator).
+See also [Data::Validator](https://metacpan.org/pod/Data::Validator).
 
 ## `validate(@args) : \%hash | undef`
 
@@ -150,4 +150,4 @@ it under the same terms as Perl itself.
 
 # SEE ALSO
 
-[Data::Validator](http://search.cpan.org/perldoc?Data::Validator)
+[Data::Validator](https://metacpan.org/pod/Data::Validator)

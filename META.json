@@ -4,7 +4,7 @@
       "Yuji Shimada <xaicron {@} GMAIL.COM>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.5.6, CPAN::Meta::Converter version 2.131560",
+   "generated_by" : "Minilla/v0.14.1, CPAN::Meta::Converter version 2.140640",
    "license" : [
       "perl_5"
    ],
@@ -21,7 +21,8 @@
          "share",
          "eg",
          "examples",
-         "author"
+         "author",
+         "builder"
       ]
    },
    "prereqs" : {
@@ -41,7 +42,8 @@
       "develop" : {
          "requires" : {
             "Test::CPAN::Meta" : "0",
-            "Test::MinimumVersion" : "0.10108",
+            "Test::MinimumVersion::Fast" : "0.04",
+            "Test::PAUSE::Permissions" : "0.04",
             "Test::Pod" : "1.41",
             "Test::Spellunker" : "v0.2.7"
          }
@@ -65,9 +67,10 @@
          "web" : "https://github.com/xaicron/p5-Data-Validator-Recursive"
       }
    },
-   "version" : "0.04",
+   "version" : "0.05",
    "x_contributors" : [
       "punytan <punytan@gmail.com>",
-      "xaicron <xaicron@gmail.com>"
+      "yousuke enomoto <mosaafi@gmail.com>",
+      "Yuji Shimada <xaicron@gmail.com>"
    ]
 }

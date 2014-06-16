@@ -2,6 +2,10 @@ Revision history for Perl extension Data::Validator::Recursive
 
 {{$NEXT}}
 
+0.05 2014-06-16T01:56:59Z
+    - Fixed with('AllowExtra') #2
+    - Applying for ArrayRef #3
+
 0.04 2013-07-16T18:21:11Z
     - Fixed wrong error message at Exclusive Parameter
 
