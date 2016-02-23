@@ -133,7 +133,7 @@ Clear last errors after return last errors or undefined value.
 
 # AUTHOR
 
-Yuji Shimada <xaicron {@} GMAIL.COM>
+Yuji Shimada &lt;xaicron {@} GMAIL.COM>
 
 # CONTRIBUTORS
 
