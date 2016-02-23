@@ -77,6 +77,15 @@ sub validate {
                         ? "$_parent_name.$_->{conflict}" : $_->{conflict};
                     $message = sprintf q{'%s' and '%s' is %s}, $name, $other_name, $type;
                 }
+                elsif ($type eq 'InvalidValue') {
+                    my $org_message = (split ': ', $_->{message}, 2)[1];
+                    $message = sprintf q{Invalid value for '%s': %s}, $name, $org_message;
+                }
+                elsif ($type eq 'MissingParameter') {
+                    my $org_message = (split ': ', $_->{message}, 2)[1];
+                    $org_message =~ s/'([^']+)'/'$_parent_name.$1'/g if $_parent_name;
+                    $message = sprintf q{Missing parameter: %s}, $org_message;
+                }
                 else {
                     $message = sprintf q{'%s' is %s}, $name, $type;
                 }

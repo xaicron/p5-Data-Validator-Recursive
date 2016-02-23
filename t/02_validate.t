@@ -49,24 +49,18 @@ subtest 'invalid data' => sub {
     ok! $rule->validate($input);
 
     ok $rule->has_error;
-    is_deeply $rule->error, {
-        name    => 'baz.fuga',
-        type    => 'InvalidValue',
-        message => q{'baz.fuga' is InvalidValue},
-    };
+    is $rule->error->{name}, 'baz.fuga';
+    is $rule->error->{type}, 'InvalidValue';
+    like $rule->error->{message}, qr/^\QInvalid value for 'baz.fuga': \E/;
 
-    is_deeply $rule->errors, [
-        {
-            name    => 'baz.fuga',
-            type    => 'InvalidValue',
-            message => q{'baz.fuga' is InvalidValue},
-        },
-        {
-            name    => 'baz.hoge',
-            type    => 'MissingParameter',
-            message => q{'baz.hoge' is MissingParameter},
-        },
-    ];
+    is scalar @{ $rule->errors }, 2;
+    is $rule->errors->[0]{name}, 'baz.fuga';
+    is $rule->errors->[0]{type}, 'InvalidValue';
+    like $rule->errors->[0]{message}, qr/^\QInvalid value for 'baz.fuga': \E/;
+    is $rule->errors->[1]{name}, 'baz.hoge';
+    is $rule->errors->[1]{type}, 'MissingParameter';
+    like $rule->errors->[1]{message}, qr/^\QMissing parameter: 'baz.hoge' (or 'baz.piyo')\E/;
+
     is_deeply $rule->errors, $rule->clear_errors;
     ok !$rule->has_error;
 };

@@ -49,19 +49,15 @@ subtest 'invalid data as array' => sub {
     ok! $rule->validate($input);
 
     ok $rule->has_error;
-    is_deeply $rule->error, {
-        name    => 'baz',
-        type    => 'InvalidValue',
-        message => q{'baz' is InvalidValue},
-    };
+    is $rule->error->{name}, 'baz';
+    is $rule->error->{type}, 'InvalidValue';
+    like $rule->error->{message}, qr/^\QInvalid value for 'baz': \E/;
 
-    is_deeply $rule->errors, [
-        {
-            name    => 'baz',
-            type    => 'InvalidValue',
-            message => q{'baz' is InvalidValue},
-        },
-    ];
+    is scalar @{ $rule->errors }, 1;
+    is $rule->errors->[0]{name}, 'baz';
+    is $rule->errors->[0]{type}, 'InvalidValue';
+    like $rule->errors->[0]{message}, qr/^\QInvalid value for 'baz': \E/;
+
     is_deeply $rule->errors, $rule->clear_errors;
     ok !$rule->has_error;
 };
@@ -83,24 +79,18 @@ subtest 'invalid data at the first of array' => sub {
     ok! $rule->validate($input);
 
     ok $rule->has_error;
-    is_deeply $rule->error, {
-        name    => 'baz[0].fuga',
-        type    => 'InvalidValue',
-        message => q{'baz[0].fuga' is InvalidValue},
-    };
+    is $rule->error->{name}, 'baz[0].fuga';
+    is $rule->error->{type}, 'InvalidValue';
+    like $rule->error->{message}, qr/^\QInvalid value for 'baz[0].fuga': \E/;
 
-    is_deeply $rule->errors, [
-        {
-            name    => 'baz[0].fuga',
-            type    => 'InvalidValue',
-            message => q{'baz[0].fuga' is InvalidValue},
-        },
-        {
-            name    => 'baz[0].hoge',
-            type    => 'MissingParameter',
-            message => q{'baz[0].hoge' is MissingParameter},
-        },
-    ];
+    is scalar @{ $rule->errors }, 2;
+    is $rule->errors->[0]{name}, 'baz[0].fuga';
+    is $rule->errors->[0]{type}, 'InvalidValue';
+    like $rule->errors->[0]{message}, qr/^\QInvalid value for 'baz[0].fuga': \E/;
+    is $rule->errors->[1]{name}, 'baz[0].hoge';
+    is $rule->errors->[1]{type}, 'MissingParameter';
+    like $rule->errors->[1]{message}, qr/^\QMissing parameter: 'baz[0].hoge' (or 'baz[0].piyo')\E/;
+
     is_deeply $rule->errors, $rule->clear_errors;
     ok !$rule->has_error;
 };
@@ -129,24 +119,18 @@ subtest 'invalid data at the second of array' => sub {
     ok! $rule->validate($input);
 
     ok $rule->has_error;
-    is_deeply $rule->error, {
-        name    => 'baz[1].fuga',
-        type    => 'InvalidValue',
-        message => q{'baz[1].fuga' is InvalidValue},
-    };
+    is $rule->error->{name}, 'baz[1].fuga';
+    is $rule->error->{type}, 'InvalidValue';
+    like $rule->error->{message}, qr/^\QInvalid value for 'baz[1].fuga': \E/;
 
-    is_deeply $rule->errors, [
-        {
-            name    => 'baz[1].fuga',
-            type    => 'InvalidValue',
-            message => q{'baz[1].fuga' is InvalidValue},
-        },
-        {
-            name    => 'baz[1].hoge',
-            type    => 'MissingParameter',
-            message => q{'baz[1].hoge' is MissingParameter},
-        },
-    ];
+    is scalar @{ $rule->errors }, 2;
+    is $rule->errors->[0]{name}, 'baz[1].fuga';
+    is $rule->errors->[0]{type}, 'InvalidValue';
+    like $rule->errors->[0]{message}, qr/^\QInvalid value for 'baz[1].fuga': \E/;
+    is $rule->errors->[1]{name}, 'baz[1].hoge';
+    is $rule->errors->[1]{type}, 'MissingParameter';
+    like $rule->errors->[1]{message}, qr/^\QMissing parameter: 'baz[1].hoge' (or 'baz[1].piyo')\E/;
+
     is_deeply $rule->errors, $rule->clear_errors;
     ok !$rule->has_error;
 };
