@@ -32,7 +32,7 @@ subtest 'valid data' => sub {
     my $params = $rule->validate($input);
 
     is_deeply $params, $input;
-    ok !$rule->has_error;
+    ok !$rule->has_errors;
     ok !$rule->error;
     ok !$rule->errors;
     ok !$rule->clear_errors;
@@ -48,7 +48,7 @@ subtest 'invalid data' => sub {
     };
     ok! $rule->validate($input);
 
-    ok $rule->has_error;
+    ok $rule->has_errors;
     is $rule->error->{name}, 'baz.fuga';
     is $rule->error->{type}, 'InvalidValue';
     like $rule->error->{message}, qr/^\QInvalid value for 'baz.fuga': \E/;
@@ -62,7 +62,7 @@ subtest 'invalid data' => sub {
     like $rule->errors->[1]{message}, qr/^\QMissing parameter: 'baz.hoge' (or 'baz.piyo')\E/;
 
     is_deeply $rule->errors, $rule->clear_errors;
-    ok !$rule->has_error;
+    ok !$rule->has_errors;
 };
 
 subtest 'conflicts' => sub {
@@ -92,7 +92,7 @@ subtest 'conflicts' => sub {
         },
     ];
     is_deeply $rule->errors, $rule->clear_errors;
-    ok !$rule->has_error;
+    ok !$rule->has_errors;
 };
 
 subtest 'with default option' => sub {
@@ -121,7 +121,7 @@ subtest 'with default option' => sub {
     is_deeply $params, { %$params, bar => 1 }
         or note explain $params;
 
-    ok !$rule->has_error;
+    ok !$rule->has_errors;
     ok !$rule->error;
     ok !$rule->errors;
     ok !$rule->clear_errors;
@@ -159,7 +159,7 @@ subtest 'default option with nested' => sub {
         },
     } or note explain $params;
 
-    ok !$rule->has_error;
+    ok !$rule->has_errors;
     ok !$rule->error;
     ok !$rule->errors;
     ok !$rule->clear_errors;
@@ -205,7 +205,7 @@ subtest 'with AllowExtra' => sub {
 
     note ref $rule;
 
-    ok !$rule->has_error;
+    ok !$rule->has_errors;
     ok !$rule->error;
     ok !$rule->errors;
     ok !$rule->clear_errors;

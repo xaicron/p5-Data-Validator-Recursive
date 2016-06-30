@@ -147,10 +147,11 @@ sub errors {
     $self->{errors};
 }
 
-sub has_error {
+sub has_errors {
     my $self = shift;
     $self->{errors} ? 1 : 0;
 }
+*has_error = *has_errors; # backward compatible
 
 sub clear_errors {
     my $self = shift;
@@ -263,12 +264,12 @@ Validates I<< @args >> and returns a restricted HASH reference, But return undef
 
   my $params = $rule->validate(@args) or croak $rule->error->{message};
 
-=head2 C<< has_error() : Bool >>
+=head2 C<< has_errors() : Bool >>
 
 Return true if there is an error.
 
    $rule->validate($params);
-   if ($rule->has_error) {
+   if ($rule->has_errors) {
       ...
    }
 
@@ -299,7 +300,7 @@ Returns last first error data or undefined value.
 Clear last errors after return last errors or undefined value.
 
   my $errors = $rule->clear_errors;
-  say $rule->has_error; # 0
+  say $rule->has_errors; # 0
 
 =head1 AUTHOR
 
