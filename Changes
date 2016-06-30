@@ -2,6 +2,10 @@ Revision history for Perl extension Data::Validator::Recursive
 
 {{$NEXT}}
 
+0.07 2016-06-30T13:49:17Z
+    - Fixed typo: has_error() to has_errors() (hirose31++)
+    - passthru original error message.
+
 0.06 2014-06-16T10:03:37Z
     - Allow chain style for with()
 

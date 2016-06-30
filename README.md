@@ -93,12 +93,12 @@ Validates _@args_ and returns a restricted HASH reference, But return undefined 
 
     my $params = $rule->validate(@args) or croak $rule->error->{message};
 
-## `has_error() : Bool`
+## `has_errors() : Bool`
 
 Return true if there is an error.
 
     $rule->validate($params);
-    if ($rule->has_error) {
+    if ($rule->has_errors) {
        ...
     }
 
@@ -129,7 +129,7 @@ Returns last first error data or undefined value.
 Clear last errors after return last errors or undefined value.
 
     my $errors = $rule->clear_errors;
-    say $rule->has_error; # 0
+    say $rule->has_errors; # 0
 
 # AUTHOR
 
