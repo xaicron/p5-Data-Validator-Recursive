@@ -28,3 +28,5 @@ Makefile.PL
 /Build
 !Build/
 !META.json
+/Build.bat
+!LICENSE

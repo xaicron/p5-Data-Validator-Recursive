@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/xaicron/p5-Data-Validator-Recursive.svg?branch=master)](https://travis-ci.org/xaicron/p5-Data-Validator-Recursive)
 # NAME
 
 Data::Validator::Recursive - recursive data friendly Data::Validator

@@ -1,0 +1,6 @@
+name = "Data-Validator-Recursive"
+badges = ["travis"]
+authority="cpan:XAICRON"
+
+module_maker="ModuleBuildTiny"
+
