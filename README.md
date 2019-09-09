@@ -31,7 +31,7 @@ Data::Validator::Recursive - recursive data friendly Data::Validator
     };
 
     # do validation
-    my $params = $rule->validate($iput) or croak $rule->error->{message};
+    my $params = $rule->validate($input) or croak $rule->error->{message};
 
 # DESCRIPTION
 
